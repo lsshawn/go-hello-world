@@ -1,14 +1,44 @@
 package view
 
-templ Index() {
-	<html lang="en">
-		<head>
-			<meta charset="utf-8"/>
-			<title>Golang TODO</title>
-			<link href="/css/output.css" rel="stylesheet"/>
-		</head>
-		<body>
-			@Hello("ss")
-		</body>
-	</html>
+import "github.com/lsshawn/go-todo/view/layout"
+import "github.com/lsshawn/go-todo/view/components"
+import "github.com/lsshawn/go-todo/dto"
+
+templ Index(todos []*dto.TodoCardDto) {
+	@layout.Base() {
+		<div class="h-screen w-screen bg-black flex flex-col justify-center items-center relative">
+			<div class="w-screen bg-black flex flex-col justify-center items-center relative max-w-2xl">
+				@components.TodoInput()
+				@components.AddTodoButton()
+				<div class="h-12"></div>
+				<div class="bg-white p-6 rounded-2xl shadow-lg w-full flex flex-col gap-4" id="todos">
+					for _, todo := range todos {
+						<div class="p-6 py-3 flex flex-row items-center justify-between w-full gap-4 rounded-2xl border border-black border-solid" id={ "todo-" + todo.ID }>
+							<div>{ todo.Text }</div>
+							<div>
+								<span
+ 									class="material-symbols-outlined cursor-pointer hover:opacity-50"
+ 									hx-get={ "/components?type=edit-todo-input&id=" + todo.ID }
+ 									hx-trigger="click"
+ 									hx-swap="outerHTML"
+ 									hx-target={ "#todo-" + todo.ID }
+								>
+									edit
+								</span>
+								<span
+ 									class="material-symbols-outlined cursor-pointer hover:opacity-50"
+ 									hx-delete={ "/todos/" + todo.ID }
+ 									hx-trigger="click"
+ 									hx-swap="outerHTML"
+ 									hx-target="#todos"
+								>
+									delete
+								</span>
+							</div>
+						</div>
+					}
+				</div>
+			</div>
+		</div>
+	}
 }

@@ -2,18 +2,31 @@ package main
 
 import (
 	"context"
-	"os"
 
+	"github.com/google/uuid"
 	"github.com/labstack/echo/v4"
+	"github.com/lsshawn/go-todo/dto"
 	"github.com/lsshawn/go-todo/handler"
 	"github.com/lsshawn/go-todo/view"
 )
 
 func main() {
+	todos := []*dto.TodoCardDto{
+		{
+			ID:      uuid.New().String(),
+			Text:    "First item",
+			Checked: false,
+		}, {
+			ID:      uuid.New().String(),
+			Text:    "Second item",
+			Checked: false,
+		},
+	}
+
 	app := echo.New()
 
-	component := view.Index()
-	component.Render(context.Background(), os.Stdout)
+	// component := view.Index()
+	// component.Render(context.Background(), os.Stdout)
 
 	userHandler := handler.UserHandler{}
 
@@ -25,6 +38,7 @@ func main() {
 	})
 
 	app.GET("/", func(c echo.Context) error {
+		component := view.Index(todos)
 		return component.Render(context.Background(), c.Response().Writer)
 	})
 

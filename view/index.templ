@@ -9,7 +9,19 @@ templ Index(todos []*dto.TodoCardDto) {
 		<div class="h-screen w-screen bg-black flex flex-col justify-center items-center relative">
 			<div
  				class="w-screen bg-black flex flex-col justify-center items-center relative max-w-2xl"
- 				x-data="{ inputText: '', resetInput() { this.$refs.todoInputText.focus(); this.inputText = ''; }}"
+ 				x-data="{
+          inputText: '',
+          isSubmitting: false,
+          resetInput() { this.$refs.todoInputText.focus(); this.inputText = ''; this.isSubmitting = true; },
+          init() {
+            this.$nextTick(() => {
+                document.body.addEventListener('htmx:afterOnLoad', () => {
+                    this.isSubmitting = false;
+                });
+            });
+        }
+        }"
+ 				x-init="init()"
 			>
 				<form
  					class="flex flex-col w-full gap-4"
@@ -31,14 +43,10 @@ templ Index(todos []*dto.TodoCardDto) {
 					<button
  						id="add-todo-button"
  						type="submit"
- 						class="bg-green-200 hover:opacity-50 p-3 rounded-2xl border border-black border-solid w-full"
+ 						class="btn btn-success"
+ 						:disabled="isSubmitting"
 					>
-						<span
- 							class="spinner-border spinner-border-sm htmx-indicator"
- 							id="spinner"
- 							role="status"
- 							aria-hidden="true"
-						>loading</span>
+						<span class="loading loading-spinner htmx-indicator" id="spinner" role="status" aria-hidden="true"></span>
 						Add TODO
 					</button>
 				</form>

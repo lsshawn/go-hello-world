@@ -33,7 +33,7 @@ func Index(todos []*dto.TodoCardDto) templ.Component {
 				templ_7745c5c3_Buffer = templ.GetBuffer()
 				defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"h-screen w-screen bg-black flex flex-col justify-center items-center relative\"><div class=\"w-screen bg-black flex flex-col justify-center items-center relative max-w-2xl\" x-data=\"{ inputText: &#39;&#39;, resetInput() { this.$refs.todoInputText.focus(); this.inputText = &#39;&#39;; }}\"><form class=\"flex flex-col w-full gap-4\" hx-post=\"/add-todo\" hx-swap=\"beforeend\" hx-target=\"#todos\" hx-indicator=\"#spinner\" @submit.prevent=\"resetInput()\"><label for=\"add-todo-input\">")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"h-screen w-screen bg-black flex flex-col justify-center items-center relative\"><div class=\"w-screen bg-black flex flex-col justify-center items-center relative max-w-2xl\" x-data=\"{\n          inputText: &#39;&#39;,\n          isSubmitting: false,\n          resetInput() { this.$refs.todoInputText.focus(); this.inputText = &#39;&#39;; this.isSubmitting = true; },\n          init() {\n            this.$nextTick(() =&gt; {\n                document.body.addEventListener(&#39;htmx:afterOnLoad&#39;, () =&gt; {\n                    this.isSubmitting = false;\n                });\n            });\n        }\n        }\" x-init=\"init()\"><form class=\"flex flex-col w-full gap-4\" hx-post=\"/add-todo\" hx-swap=\"beforeend\" hx-target=\"#todos\" hx-indicator=\"#spinner\" @submit.prevent=\"resetInput()\"><label for=\"add-todo-input\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -42,21 +42,12 @@ func Index(todos []*dto.TodoCardDto) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</label> <input type=\"text\" id=\"add-todo-input\" name=\"text\" class=\"rounded-2xl text-black font-sans text-sm flex-1\" x-model=\"inputText\" x-ref=\"todoInputText\"> <button id=\"add-todo-button\" type=\"submit\" class=\"bg-green-200 hover:opacity-50 p-3 rounded-2xl border border-black border-solid w-full\"><span class=\"spinner-border spinner-border-sm htmx-indicator\" id=\"spinner\" role=\"status\" aria-hidden=\"true\">")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</label> <input type=\"text\" id=\"add-todo-input\" name=\"text\" class=\"rounded-2xl text-black font-sans text-sm flex-1\" x-model=\"inputText\" x-ref=\"todoInputText\"> <button id=\"add-todo-button\" type=\"submit\" class=\"btn btn-success\" :disabled=\"isSubmitting\"><span class=\"loading loading-spinner htmx-indicator\" id=\"spinner\" role=\"status\" aria-hidden=\"true\"></span> ")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Var4 := `loading`
+			templ_7745c5c3_Var4 := `Add TODO`
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var4)
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</span> ")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Var5 := `Add TODO`
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var5)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

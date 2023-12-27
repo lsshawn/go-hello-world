@@ -7,14 +7,17 @@ import "github.com/lsshawn/go-todo/view/components"
 templ Index(todos []*dto.TodoCardDto) {
 	@layout.Base() {
 		<div class="h-screen w-screen bg-black flex flex-col justify-center items-center relative">
-			<div class="w-screen bg-black flex flex-col justify-center items-center relative max-w-2xl" x-data="{ clearInput: false }">
+			<div
+ 				class="w-screen bg-black flex flex-col justify-center items-center relative max-w-2xl"
+ 				x-data="{ inputText: '', resetInput() { this.$refs.todoInputText.focus(); this.inputText = ''; }}"
+			>
 				<form
  					class="flex flex-col w-full gap-4"
  					hx-post="/add-todo"
  					hx-swap="beforeend"
  					hx-target="#todos"
  					hx-indicator="#spinner"
- 					@submit="clearInput = true"
+ 					@submit.prevent="resetInput()"
 				>
 					<label for="add-todo-input">Todo</label>
 					<input
@@ -22,9 +25,8 @@ templ Index(todos []*dto.TodoCardDto) {
  						id="add-todo-input"
  						name="text"
  						class="rounded-2xl text-black font-sans text-sm flex-1"
- 						x-bind:value="clearInput ? '' : value"
- 						x-on:input="clearInput = false"
- 						x-ref="todoInput"
+ 						x-model="inputText"
+ 						x-ref="todoInputText"
 					/>
 					<button
  						id="add-todo-button"

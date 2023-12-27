@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"time"
 
 	"github.com/google/uuid"
@@ -47,11 +48,18 @@ func main() {
 		// mimic a server call
 		time.Sleep(1 * time.Second)
 		newTodo := &dto.TodoCardDto{
+			ID:   uuid.New().String(),
 			Text: text,
 		}
 
 		component := components.TodoCard(newTodo)
 		return component.Render(context.Background(), c.Response().Writer)
+	})
+
+	app.DELETE("/delete-todo/:id", func(c echo.Context) error {
+		// add your delete logic
+		// id := c.Param("id")
+		return c.NoContent(http.StatusOK) // Send an empty response
 	})
 
 	app.GET("/", func(c echo.Context) error {

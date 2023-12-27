@@ -2,12 +2,15 @@ package main
 
 import (
 	"context"
+	"fmt"
+	"time"
 
 	"github.com/google/uuid"
 	"github.com/labstack/echo/v4"
 	"github.com/lsshawn/go-todo/dto"
 	"github.com/lsshawn/go-todo/handler"
 	"github.com/lsshawn/go-todo/view"
+	"github.com/lsshawn/go-todo/view/components"
 )
 
 func main() {
@@ -35,6 +38,20 @@ func main() {
 
 	app.GET("/ping", func(c echo.Context) error {
 		return c.String(200, "pong")
+	})
+
+	app.POST("/add-todo", func(c echo.Context) error {
+		text := c.FormValue("text")
+		fmt.Printf("LS -> cmd/main.go:41 -> text: %+v\n", text)
+
+		// mimic a server call
+		time.Sleep(1 * time.Second)
+		newTodo := &dto.TodoCardDto{
+			Text: text,
+		}
+
+		component := components.TodoCard(newTodo)
+		return component.Render(context.Background(), c.Response().Writer)
 	})
 
 	app.GET("/", func(c echo.Context) error {

@@ -6,8 +6,8 @@ run:
 
 .PHONY: css
 css:
-	tailwindcss -i css/input.css -o css/output.css --minify
+	tailwindcss -i assets/css/tailwind.css -o static/css/tailwind.css --minify
 
 .PHONY: css-watch
 css-watch:
-	tailwindcss -i css/input.css -o css/output.css --watch
+	tailwindcss -i assets/css/tailwind.css -o static/css/tailwind.css --watch

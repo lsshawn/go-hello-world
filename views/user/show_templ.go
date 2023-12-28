@@ -11,9 +11,9 @@ import "io"
 import "bytes"
 
 import (
-	"github.com/lsshawn/go-todo/model"
-	"github.com/lsshawn/go-todo/view/components"
-	"github.com/lsshawn/go-todo/view/layout"
+	"github.com/lsshawn/go-todo/internal/model"
+	"github.com/lsshawn/go-todo/views/components"
+	"github.com/lsshawn/go-todo/views/layout"
 )
 
 func getAuthUser(c context.Context) string {
@@ -44,7 +44,7 @@ func Show(user model.User) templ.Component {
 		var templ_7745c5c3_Var2 string
 		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(getAuthUser(ctx))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `view/user/show.templ`, Line: 18, Col: 20}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/user/show.templ`, Line: 18, Col: 20}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 		if templ_7745c5c3_Err != nil {
@@ -72,7 +72,7 @@ func Show(user model.User) templ.Component {
 			var templ_7745c5c3_Var5 string
 			templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(user.Email)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `view/user/show.templ`, Line: 21, Col: 28}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/user/show.templ`, Line: 21, Col: 28}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 			if templ_7745c5c3_Err != nil {

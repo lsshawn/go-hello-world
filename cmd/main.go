@@ -8,10 +8,10 @@ import (
 
 	"github.com/google/uuid"
 	"github.com/labstack/echo/v4"
-	"github.com/lsshawn/go-todo/dto"
-	"github.com/lsshawn/go-todo/handler"
-	"github.com/lsshawn/go-todo/view"
-	"github.com/lsshawn/go-todo/view/components"
+	"github.com/lsshawn/go-todo/internal/dto"
+	"github.com/lsshawn/go-todo/internal/handler"
+	"github.com/lsshawn/go-todo/views"
+	"github.com/lsshawn/go-todo/views/components"
 )
 
 func main() {
@@ -63,7 +63,7 @@ func main() {
 	})
 
 	app.GET("/", func(c echo.Context) error {
-		component := view.Index(todos)
+		component := views.Index(todos)
 		return component.Render(context.Background(), c.Response().Writer)
 	})
 

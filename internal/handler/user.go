@@ -2,8 +2,8 @@ package handler
 
 import (
 	"github.com/labstack/echo/v4"
-	"github.com/lsshawn/go-todo/model"
-	"github.com/lsshawn/go-todo/view/user"
+	"github.com/lsshawn/go-todo/internal/model"
+	"github.com/lsshawn/go-todo/views/user"
 )
 
 type UserHandler struct{}

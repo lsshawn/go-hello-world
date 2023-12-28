@@ -1,8 +1,8 @@
-package view
+package views
 
-import "github.com/lsshawn/go-todo/view/layout"
-import "github.com/lsshawn/go-todo/dto"
-import "github.com/lsshawn/go-todo/view/components"
+import "github.com/lsshawn/go-todo/views/layout"
+import "github.com/lsshawn/go-todo/internal/dto"
+import "github.com/lsshawn/go-todo/views/components"
 
 templ Index(todos []*dto.TodoCardDto) {
 	@layout.Base() {

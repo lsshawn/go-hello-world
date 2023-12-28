@@ -10,7 +10,7 @@ import "context"
 import "io"
 import "bytes"
 
-import "github.com/lsshawn/go-todo/view/components"
+import "github.com/lsshawn/go-todo/views/components"
 
 func Base() templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
@@ -34,7 +34,7 @@ func Base() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</title><link href=\"/css/output.css\" rel=\"stylesheet\"><script src=\"https://unpkg.com/htmx.org\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</title><link href=\"static/css/tailwind.css\" rel=\"stylesheet\"><script src=\"https://unpkg.com/htmx.org\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

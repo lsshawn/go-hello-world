@@ -10,7 +10,7 @@ import "context"
 import "io"
 import "bytes"
 
-import "github.com/lsshawn/go-todo/dto"
+import "github.com/lsshawn/go-todo/internal/dto"
 
 func TodoCard(todo *dto.TodoCardDto) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
@@ -40,7 +40,7 @@ func TodoCard(todo *dto.TodoCardDto) templ.Component {
 		var templ_7745c5c3_Var2 string
 		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(todo.Text)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `view/components/todo-card.templ`, Line: 6, Col: 18}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/components/todo-card.templ`, Line: 6, Col: 18}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 		if templ_7745c5c3_Err != nil {

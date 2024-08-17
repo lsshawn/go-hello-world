@@ -1,7 +1,15 @@
 {
-	"devDependencies": {
-		"@tailwindcss/forms": "^0.5.7",
-		"daisyui": "^4.4.24",
-		"tailwindcss": "^3.4.0"
-	}
+  "name": "mytempl",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "tailwindcss build -o static/css/tailwind.css --minify",
+    "watch": "tailwindcss build -o static/css/tailwind.css --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.7",
+    "daisyui": "^4.4.24",
+    "tailwindcss": "^3.4.0"
+  }
 }

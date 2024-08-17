@@ -70,7 +70,7 @@ func main() {
 	app.Static("/css", "css")
 	app.Static("/static", "static")
 
-	app.Logger.Fatal(app.Start(":1323"))
+	app.Logger.Fatal(app.Start(":1324"))
 }
 
 func userMiddleware(next echo.HandlerFunc) echo.HandlerFunc {

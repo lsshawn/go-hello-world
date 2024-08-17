@@ -12,7 +12,7 @@ templ Index(todos []*dto.TodoCardDto) {
  				x-data="{
           inputText: '',
           isSubmitting: false,
-          resetInput() { this.$refs.todoInputText.focus(); this.inputText = ''; this.isSubmitting = true; },
+          resetInput() { console.log('reset'); this.$refs.todoInputText.focus(); this.inputText = ''; this.isSubmitting = true; },
           init() {
             this.$nextTick(() => {
                 document.body.addEventListener('htmx:afterOnLoad', () => {
@@ -21,7 +21,6 @@ templ Index(todos []*dto.TodoCardDto) {
             });
         }
         }"
- 				x-init="init()"
 			>
 				<form
  					class="flex flex-col w-full gap-4"
